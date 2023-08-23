@@ -41,6 +41,15 @@ class Dealership {
       return null;
     }
   }
+  searchCars(criteria) {
+    return this.carsInStock.filter(car => {
+      return (
+        car.manufacturer.toLowerCase().includes(criteria.toLowerCase()) ||
+        car.engineType.toLowerCase().includes(criteria.toLowerCase()) ||
+        car.price <= parseFloat(criteria)
+      );
+    });
+  }
   }
   
   module.exports = Dealership;

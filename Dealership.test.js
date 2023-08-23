@@ -48,5 +48,21 @@ test('Dealership cannot sell if customer cannot afford car', () => {
     expect(soldCar).toBeNull();
     expect(dealership.countCarsInStock()).toBe(1); 
     expect(customer.car).toBeNull(); 
-  });  
+  });
+
+test('Dealership can search cars by manufacturer, price, or engine type', () => {
+    const dealership = new Dealership('AutoTrader', 5);
+  
+    const car1 = new Car('Toyota', 25000, 'Petrol');
+    const car2 = new Car('Honda', 28000, 'Electric');
+    const car3 = new Car('Suzuki', 20000, 'Petrol');
+  
+    dealership.addCarToStock(car1);
+    dealership.addCarToStock(car2);
+    dealership.addCarToStock(car3);
+  
+    const searchResults = dealership.searchCars('Petrol');
+  
+    expect(searchResults).toEqual([car1, car3]);
+  });
     
