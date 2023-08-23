@@ -34,4 +34,19 @@ test('Dealership can sell car to customer', () => {
     expect(customer.car).toBe(car1);
     expect(customer.wallet).toBe(15000); 
   });
+
+test('Dealership cannot sell if customer cannot afford car', () => {
+    const dealership = new Dealership('AutoTrader', 5);
+    const customer = new Customer('Connor', 20000);
+  
+    const car = new Car('Toyota', 25000, 'Petrol');
+  
+    dealership.addCarToStock(car);
+  
+    const soldCar = dealership.sellCar('Toyota', customer);
+  
+    expect(soldCar).toBeNull();
+    expect(dealership.countCarsInStock()).toBe(1); 
+    expect(customer.car).toBeNull(); 
+  });  
     
