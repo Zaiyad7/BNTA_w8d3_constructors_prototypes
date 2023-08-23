@@ -2,9 +2,9 @@ const Dealership = require('./Dealership');
 const Car = require('./Car');
 
 test('Dealership methods work correctly', () => {
-  const dealership = new Dealership('Awesome Autos', 5);
+  const dealership = new Dealership('AutoTrader', 5);
 
-  const car1 = new Car('Toyota', 25000, 'Gasoline');
+  const car1 = new Car('Toyota', 25000, 'Petrol');
   const car2 = new Car('Honda', 28000, 'Electric');
 
   dealership.addCarToStock(car1);
