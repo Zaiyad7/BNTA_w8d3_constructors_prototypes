@@ -54,15 +54,36 @@ test('Dealership can search cars by manufacturer, price, or engine type', () => 
     const dealership = new Dealership('AutoTrader', 5);
   
     const car1 = new Car('Toyota', 25000, 'Petrol');
-    const car2 = new Car('Honda', 28000, 'Electric');
-    const car3 = new Car('Suzuki', 20000, 'Petrol');
+    const car2 = new Car('Honda', 28000, 'Petrol');
+    const car3 = new Car('Suzuki', 20000, 'Electric');
   
     dealership.addCarToStock(car1);
     dealership.addCarToStock(car2);
     dealership.addCarToStock(car3);
   
-    const searchResults = dealership.searchCars('Petrol');
+    const searchResultsByEngineType = dealership.searchCars('Petrol');
+    const searchResultsByManufacturer = dealership.searchCars('Toyota');
+    const searchResultsByPrice = dealership.searchCars('20000');
   
-    expect(searchResults).toEqual([car1, car3]);
+    expect(searchResultsByEngineType).toEqual([car1, car2]);
+    expect(searchResultsByManufacturer).toEqual([car1]);
+    expect(searchResultsByPrice).toEqual([car3]);
+
   });
+
+test('Dealership cannot add more cars than its maximum stock', () => {
+    const dealership = new Dealership('AutoTrader', 2);
+  
+    const car1 = new Car('Toyota', 25000, 'Gasoline');
+    const car2 = new Car('Honda', 28000, 'Electric');
+    const car3 = new Car('Ford', 20000, 'Gasoline');
+  
+    const added1 = dealership.addCarToStock(car1);
+    const added2 = dealership.addCarToStock(car2);
+    const added3 = dealership.addCarToStock(car3);
+  
+    expect(added1).toBe(true);
+    expect(added2).toBe(true);
+    expect(added3).toBe(false); 
+  }); 
     
