@@ -74,9 +74,9 @@ test('Dealership can search cars by manufacturer, price, or engine type', () => 
 test('Dealership cannot add more cars than its maximum stock', () => {
     const dealership = new Dealership('AutoTrader', 2);
   
-    const car1 = new Car('Toyota', 25000, 'Gasoline');
+    const car1 = new Car('Toyota', 25000, 'Petrol');
     const car2 = new Car('Honda', 28000, 'Electric');
-    const car3 = new Car('Ford', 20000, 'Gasoline');
+    const car3 = new Car('Ford', 20000, 'Petrol');
   
     const added1 = dealership.addCarToStock(car1);
     const added2 = dealership.addCarToStock(car2);
@@ -85,5 +85,16 @@ test('Dealership cannot add more cars than its maximum stock', () => {
     expect(added1).toBe(true);
     expect(added2).toBe(true);
     expect(added3).toBe(false); 
-  }); 
+  });
+  
+test('Dealership cannot sell car not in stock', () => {
+    const dealership = new Dealership('AutoTrader', 5);
+    const customer = new Customer('Altair', 30000);
+  
+    const car = new Car('Toyota', 25000, 'Petrol');
+    const soldCar = dealership.sellCar('Toyota', customer);
+  
+    expect(soldCar).toBeNull();
+    expect(customer.car).toBeNull();
+  });
     
