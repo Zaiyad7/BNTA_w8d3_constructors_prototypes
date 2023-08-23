@@ -1,35 +1,37 @@
-const Car = require("./Car")
-
-const Dealership = function(name, maxCarStorage) {
-
-    this.name = name;
-    this.maxCarStorage = maxCarStorage;
-    this.carStock = [];
-    
-}
-
-
-
-Dealership.prototype.countCarStock = function() {
-    return this.carStock.length;
-}
-Dealership.prototype.addCarToStock = function(car) {
-    if (this.carStock.length < this.maxCarStorage) {
-        this.carStock.push(car);
-        return true;
+class Dealership {
+    constructor(name, maxCars) {
+      this.name = name;
+      this.maxCars = maxCars;
+      this.carsInStock = [];
     }
-    return false;
-}
-
-Dealership.prototype.getCarManufacturers = function(car) {
-    return this.carStock.map(car => this.manufacturer)
-}
-
-Dealership.prototype.getCarsByManufacturer = function(car) {
-    return this.carStock.filter(car => car.manufacturer === manufacturer);
-}
-
-module.exports = Dealership;
+  
+    countCarsInStock() {
+      return this.carsInStock.length;
+    }
+  
+    addCarToStock(car) {
+      if (this.carsInStock.length < this.maxCars) {
+        this.carsInStock.push(car);
+        return true;
+      } else {
+        return false;
+      }
+    }
+  
+    getManufacturers() {
+      return this.carsInStock.map(car => car.manufacturer);
+    }
+  
+    getCarsByManufacturer(manufacturer) {
+      return this.carsInStock.filter(car => car.manufacturer === manufacturer);
+    }
+  
+    calculateTotalValue() {
+      return this.carsInStock.reduce((total, car) => total + car.price, 0);
+    }
+  }
+  
+  module.exports = Dealership;
 
 
 

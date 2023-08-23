@@ -1,13 +1,9 @@
-const  Car  = require("./Car");
-const car = new Car('Toyota', 20000, 'Hybrid');
+const Car = require('./Car');
 
-describe('testing car properties', () => {
+test('Car properties can be accessed', () => {
+  const car = new Car('Toyota', 25000, 'Gasoline');
 
-test('Can access car properties', () => {
-   
-    expect(car.Manufacturer = "BMW").toBe("BMW");
-    expect(car.price).toBe(20000);
-    expect(car.engineType).toBe('Hybrid');
-})
-
-})
+  expect(car.manufacturer).toBe('Toyota');
+  expect(car.price).toBe(25000);
+  expect(car.engineType).toBe('Gasoline');
+});

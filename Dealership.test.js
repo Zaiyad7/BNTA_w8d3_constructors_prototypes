@@ -1,46 +1,18 @@
-const Dealership = require("./Dealership");
-const  Car  = require("./Car");
+const Dealership = require('./Dealership');
+const Car = require('./Car');
 
-const car1 = new Car('Toyota', 20000, 'Gas');
-const car2 = new Car('Honda', 28000, 'Hybrid');
+test('Dealership methods work correctly', () => {
+  const dealership = new Dealership('Awesome Autos', 5);
 
+  const car1 = new Car('Toyota', 25000, 'Gasoline');
+  const car2 = new Car('Honda', 28000, 'Electric');
 
-describe('testing dealership methods', () => {
+  dealership.addCarToStock(car1);
+  dealership.addCarToStock(car2);
 
-    test('Dealership can count cars in stock', () => {
-        const dealership = new Dealership('Garage', 10);
-        
-      
-        dealership.addCarToStock(car1);
-        dealership.addCarToStock(car2);
-      
-        expect(dealership.countCarStock()).toBe(2);
-      });
+  expect(dealership.countCarsInStock()).toBe(2);
+  expect(dealership.getManufacturers()).toEqual(['Toyota', 'Honda']);
+  expect(dealership.getCarsByManufacturer('Toyota')).toEqual([car1]);
+  expect(dealership.calculateTotalValue()).toBe(53000);
+});
     
-    test('Dealership can return car manufacturers', () => {
-        const dealership = new Dealership('Garage', 10);
-       
-      
-        dealership.addCarToStock(car1);
-        dealership.addCarToStock(car2);
-      
-        expect(dealership.getCarManufacturers()).toEqual(['Toyota', 'Honda']);
-      });
-    
-    // test('Dealership can find cars by manufacturer', () => {
-    //     const dealership = new Dealership('Garage', 10);
-     
-      
-    //     dealership.addCarToStock(car1);
-    //     dealership.addCarToStock(car2);
-    //     // dealership.addCarToStock(car3);
-      
-    //     const toyotaCars = dealership.getCarsByManufacturer('Toyota');
-    //     expect(toyotaCars).toEqual([car1, car2]);
-    //   }); 
-
-
-
-
-
-})
